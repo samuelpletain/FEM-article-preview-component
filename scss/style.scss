@@ -144,6 +144,7 @@ html {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
   }
 }
 
@@ -151,6 +152,7 @@ html {
   border-radius: 15px;
   width: 100%;
   background-color: $white;
+  margin-bottom: 1rem;
 
   @include breakpoint() {
     max-width: 720px;
@@ -293,7 +295,6 @@ html {
   align-items: center;
   transform: translateX(101%);
   transition: transform ease .5s;
-  opacity: 0;
 
   @include breakpoint() {
     width: auto;
@@ -304,6 +305,7 @@ html {
     top: -6rem;
     left: auto;
     transform: none;
+    opacity: 0;
     transition: opacity ease .5s, right ease .5s;
 
     &::after {
