@@ -293,6 +293,7 @@ html {
   align-items: center;
   transform: translateX(101%);
   transition: transform ease .5s;
+  opacity: 0;
 
   @include breakpoint() {
     width: auto;
@@ -303,8 +304,7 @@ html {
     top: -6rem;
     left: auto;
     transform: none;
-    opacity: 0;
-    transition: opacity ease .5s;
+    transition: opacity ease .5s, right ease .5s;
 
     &::after {
       content: '';
@@ -333,10 +333,7 @@ html {
 
   &--show {
     transform: translateX(0);
-
-    @include breakpoint() {
-      opacity: 1;
-    }
+    opacity: 1;
   }
 
   &__icon:hover {
@@ -367,5 +364,13 @@ html {
 }
 
 @media only screen and (min-width: 701px) and (max-width: 950px) {
-  
+  .socials {
+    right: 2.2rem;
+
+    &::after {
+      left: auto;
+      margin: auto;
+      right: 1rem;
+    }
+  }
 }
