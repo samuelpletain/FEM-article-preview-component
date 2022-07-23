@@ -15,9 +15,6 @@ cd dist
 git add -A
 git commit -m 'deploy'
 
-# if you are deploying to https://<USERNAME>.github.io
-# git push -f git@github.com:<USERNAME>/<USERNAME>.github.io.git main
-
 git push -f git@github.com:samuelpletain/FEM-article-preview-component.git main:gh-pages
 
 cd -
