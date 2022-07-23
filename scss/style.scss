@@ -139,6 +139,12 @@ html {
   min-height: 100vh;
   padding: 4rem 1.5rem;
   background-color: $neutral-100;
+
+  @include breakpoint() {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 .card {
@@ -146,19 +152,41 @@ html {
   width: 100%;
   background-color: $white;
 
+  @include breakpoint() {
+    max-width: 720px;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: 1fr auto;
+  }
+
   &__image {
     width: 100%;
+    height: 100%;
     display: block;
-    object-position: 0 -1.3rem;
-    object-fit: cover;
+    background-position: 0 -1.3rem;
+    background-size: cover;
     aspect-ratio: 4.9/3;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+    background-image: url("../images/drawers.jpg");
+
+    @include breakpoint() {
+      grid-column: 1/6;
+      grid-row: 1/3;
+      background-position: left;
+      border-top-right-radius: 0;
+      border-bottom-left-radius: 10px;
+    }
   }
 }
 
 .article {
   padding: 3rem 2.5rem 1.5rem;
+
+  @include breakpoint() {
+    grid-column: 6/13;
+    padding: 2rem 2.5rem 1.5rem 3rem;
+  }
 
   &__title {
     font-size: 1.3rem;
@@ -166,18 +194,34 @@ html {
     color: $neutral-900;
     line-height: 1.8rem;
     margin-bottom: 1rem;
+
+    @include breakpoint() {
+      font-size: 1.5rem;
+      line-height: 2.2rem;
+    }
   }
 
   &__content {
     font-size: 1rem;
     line-height: 1.5rem;
     letter-spacing: .025rem;
+
+    @include breakpoint() {
+      font-size: .9rem;
+    }
   }
 }
 
 .footer {
+  overflow: hidden;
   padding: 1rem 2.5rem 1.5rem;
   position: relative;
+
+  @include breakpoint() {
+    grid-column: 6/13;
+    padding: 0.5rem 3rem 3rem;
+    overflow: visible;
+  }
 
   &__button {
     position: absolute;
@@ -186,10 +230,12 @@ html {
     bottom: 0;
     top: 0;
     z-index: 2;
-  }
 
-  &__socials {
-    //display: none;
+    @include breakpoint() {
+      top: .8rem;
+      bottom: auto;
+      right: 3rem;
+    }
   }
 }
 
@@ -216,11 +262,19 @@ html {
     display: inline;
     font-weight: $font-weight-bold;
     color: $neutral-900;
+
+    @include breakpoint() {
+      font-size: .85rem;
+    }
   }
 
   &__date {
     grid-column: 2/3;
     display: inline;
+
+    @include breakpoint() {
+      font-size: .85rem;
+    }
   }
 }
 
@@ -228,19 +282,65 @@ html {
   background-color: $neutral-900;
   position: absolute;
   width: 100%;
+  height: 100%;
   top: 0;
   left: 0;
-  height: 100%;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   padding: 2rem 2.5rem;
   display: flex;
   gap: 1.2rem;
   align-items: center;
+  transform: translateX(101%);
+  transition: transform ease .5s;
+
+  @include breakpoint() {
+    width: auto;
+    height: auto;
+    padding: 1.3rem 3rem;
+    border-radius: 10px;
+    right: -5.5rem;
+    top: -6rem;
+    left: auto;
+    transform: none;
+    opacity: 0;
+    transition: opacity ease .5s;
+
+    &::after {
+      content: '';
+      display: block;
+      width: 2rem;
+      height: 2rem;
+      transform: rotate(45deg);
+      background-color: $neutral-900;
+      position: absolute;
+      bottom: -.5rem;
+      right: 0;
+      left: 0;
+      margin: 0 auto;
+    }
+
+    &__icon {
+      z-index: 2;
+    }
+  }
 
   &__share {
     text-transform: uppercase;
     letter-spacing: .4rem;
+    color: $neutral-400;
+  }
+
+  &--show {
+    transform: translateX(0);
+
+    @include breakpoint() {
+      opacity: 1;
+    }
+  }
+
+  &__icon:hover {
+    cursor: pointer;
   }
 }
 
@@ -253,10 +353,19 @@ html {
   border-radius: 50%;
   background-color: $neutral-100;
 
-  &--light {
+  &:hover {
+    cursor: pointer;
+  }
+
+  &--dark {
     background-color: $neutral-700;
-    & >.button__icon {
+
+    &>.button__icon {
       filter: brightness(0) invert(1);
     }
   }
+}
+
+@media only screen and (min-width: 701px) and (max-width: 950px) {
+  
 }
